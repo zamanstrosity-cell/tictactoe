@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="./styles/reset.css">
     <link rel="stylesheet" href="./styles/style.css">
     <script src="./scripts/script.js" defer></script>
+    <script src="https://kit.fontawesome.com/8e94254121.js" crossorigin="anonymous" defer></script>
 </head>
 <body>
     <div class="container">
@@ -13,10 +15,13 @@
             <h1>Tic Tac Toe</h1>
         </div>
         <div class="game-container">
-            <div class="player"></div>
+            <div class="player">
+                <div class="name">Omar</div>
+                <div class="score">4</div>
+            </div>
             <div class="game-grid">
-                <div class="cell"></div>
-                <div class="cell"></div>
+                <div class="cell"><i class="fas fa-times"></i></div>
+                <div class="cell"><i class="far fa-circle"></i></div>
                 <div class="cell"></div>
                 <div class="cell"></div>
                 <div class="cell"></div>
@@ -25,7 +30,10 @@
                 <div class="cell"></div>
                 <div class="cell"></div>
             </div>
-            <div class="computer"></div>
+            <div class="player">
+                <div class="name">Not Omar</div>
+                <div class="score">3</div>
+            </div>
         </div>
     </div>
 </body>

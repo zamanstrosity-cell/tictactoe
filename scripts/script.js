@@ -9,28 +9,30 @@ const winModal = document.querySelector('.winner-modal');
 const winMessage = document.querySelector('.win-message');
 const reset = document.querySelector('#reset-game');
 //variables
-let circle = '<i class="far fa-circle"></i>';
-let strike = '<i class="fas fa-times"></i>';
+let circle = '<i class="far fa-circle" aria-hidden="true"></i>';
+let strike = '<i class="fas fa-times" aria-hidden="true"></i>';
 //objects
 
 const gameBoard = (cells, playerNames) => {
     let board = [...cells];
     let playerOne = {
         name: playerNames[0].value,
-        sign: 'x'
+        sign: 'X'
     };
     let playerTwo = {
         name: playerNames[1].value,
-        sign: 'o'
+        sign: 'O'
     }
     let turn = 'x';
     const drawSign = cell => {
         if(turn == 'o'){
             cell.innerHTML = circle;
             turn = 'x'
+            board.forEach(cell => console.log(cell.innerHTML))
         }else if(turn == 'x'){
             cell.innerHTML = strike;
             turn = 'o';
+            board.forEach(cell => console.log(cell.innerHTML))
         }
     };
     const checkForWin = board => {
@@ -44,33 +46,29 @@ const gameBoard = (cells, playerNames) => {
             [0, 4, 8],
             [2, 4, 6]
         ];
-        return winPatterns.some(combination => {
-            return combination.every(index => {
-                return board[index].innerHTML.contains(circle || strike);
-            })
-        })
+        if(winPatterns.some(combination => combination.every(index => board[index].innerHTML === strike ||
+            combination.every(index => board[index].innerHTML === circle)))){
+            winMessage.innerHTML = turn === 'o' ? `${playerOne.name} or "${playerOne.sign}" WINS!` : `${playerTwo.name} or "${playerTwo.sign}" WINS!`;
+            winModal.style.visibility = "visible";
+            return true;
+        }
     };
     const checkForDraw = board => {
-        return board.every(cell => {
-            return cell.innerHTML !== '';
-        })
+        if(!checkForWin(board)){
+            if(board.every(cell => cell.innerHTML !== '')){
+            winMessage.innerHTML = "THAT'S A DRAW";
+            winModal.style.visibility = "visible";
+        }
+    }
     }
     board.forEach(cell => {
         cell.addEventListener('click', (e) => {
             drawSign(e.target);
-            if(checkForWin(board)){
-                winMessage.innerHTML = turn === 'o' ? `${playerOne.name} or ${playerOne.sign} WINS!` : `${playerTwo.name} or ${playerTwo.sign} WINS!`;
-                winModal.style.visibility = "visible";
-            }else if (checkForDraw(board)){
-                winMessage.innerHTML = "THAT'S A DRAW";
-                winModal.style.visibility = "visible";
-            }
+            checkForWin(board);
+            checkForDraw(board)
         }, {once: true})
     })
 }
-
-    
-//functions
 //event listeners
 startGame.onclick = () => {
     startModal.style.visibility = "visible";
@@ -85,7 +83,7 @@ gameForm.onsubmit = () => {
     cells.forEach(cell => {
         cell.innerHTML = '';
     })
-    let newBoard = gameBoard(cells, playerNames);
+    gameBoard(cells, playerNames);
     startModal.style.visibility = 'hidden';
 }
 
@@ -93,6 +91,6 @@ reset.onclick = () => {
     cells.forEach(cell => {
         cell.innerHTML = '';
     });
-    let newBoard = gameBoard(cells, playerNames);
+    gameBoard(cells, playerNames);
     winModal.style.visibility = 'hidden';
 }

@@ -27,12 +27,10 @@ const gameBoard = (cells, playerNames) => {
     const drawSign = cell => {
         if(turn == 'o'){
             cell.innerHTML = circle;
-            turn = 'x'
-            board.forEach(cell => console.log(cell.innerHTML))
+            turn = 'x';
         }else if(turn == 'x'){
             cell.innerHTML = strike;
             turn = 'o';
-            board.forEach(cell => console.log(cell.innerHTML))
         }
     };
     const checkForWin = board => {
@@ -54,7 +52,7 @@ const gameBoard = (cells, playerNames) => {
         }
     };
     const checkForDraw = board => {
-        if(!checkForWin(board)){
+        if(checkForWin(board) !== true){
             if(board.every(cell => cell.innerHTML !== '')){
             winMessage.innerHTML = "THAT'S A DRAW";
             winModal.style.visibility = "visible";
@@ -65,7 +63,7 @@ const gameBoard = (cells, playerNames) => {
         cell.addEventListener('click', (e) => {
             drawSign(e.target);
             checkForWin(board);
-            checkForDraw(board)
+            checkForDraw(board);
         }, {once: true})
     })
 }

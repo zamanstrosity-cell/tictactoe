@@ -12,16 +12,14 @@
 <body>
     <div class="container">
         <div class="title">
-            <h1>Tic Tac Toe</h1>
+            <div class="buttons">
+                <button id="start-game">New Game</button>
+            </div>
         </div>
         <div class="game-container">
-            <div class="player">
-                <div class="name">Omar</div>
-                <div class="score">4</div>
-            </div>
             <div class="game-grid">
-                <div class="cell"><i class="fas fa-times"></i></div>
-                <div class="cell"><i class="far fa-circle"></i></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
                 <div class="cell"></div>
                 <div class="cell"></div>
                 <div class="cell"></div>
@@ -30,9 +28,19 @@
                 <div class="cell"></div>
                 <div class="cell"></div>
             </div>
-            <div class="player">
-                <div class="name">Not Omar</div>
-                <div class="score">3</div>
+        </div>
+        <div class="start-modal">
+            <form class="modal-content">
+                <i class="fas fa-times-circle"></i>
+                <input type="text" class="name" placeholder="Name of Player 1" required>
+                <input type="text" class="name" placeholder="Name of Player 2" required>
+                <input type="submit" value="Start Game" id="submit">
+            </form>
+        </div>
+        <div class="winner-modal">
+            <div class="modal-content winner">
+                <div class="win-message"></div>
+                <button id="reset-game">Reset Game</button>
             </div>
         </div>
     </div>

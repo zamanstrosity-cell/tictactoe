@@ -16,6 +16,7 @@ body {
 
 .title {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 15%;
@@ -26,23 +27,13 @@ body {
     width: 100%;
     height: 80%;
     display: flex;
-    justify-content: space-between;
+    justify-content:center;
     align-items: center;
-}
-
-.player {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    height: 40%;
-    width: 17%;
-    align-items: center;
-    padding: 15px;
 }
 
 .game-grid {
-    height: 50vw;
-    width: 50vw;
+    height: 400px;
+    width: 400px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -80,4 +71,69 @@ body {
     margin: 0;
     font-size: 500%;
     font-weight: 900;
+}
+
+.temp {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.start-modal, .winner-modal {
+    visibility:hidden;
+    position: fixed;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.75);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.winner-modal {
+    visibility: hidden;
+}
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(33, 41, 46);
+    border: 1px solid;
+    border-radius: 5px;
+    box-shadow: 4px 10px 10px 0px rgba(0, 0, 0, 0.6);
+    height: 60%;
+    width: 40%;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.winner {
+    color: white;
+    height: 30%;
+    font-size: 35px;
+}
+
+.fa-times-circle {
+    font-size: 40px;
+    transition: ease-in 0.2s;
+}
+
+.fa-times-circle:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+    color: rgb(80, 3, 3);
+}
+
+
+#submit:hover, #start-game:hover, #reset-game:hover {
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+}
+
+#submit, #start-game, #reset-game {
+    width: 100px;
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+    height: 50px;
+    border-radius: 5px;
+    cursor: pointer;
 }
